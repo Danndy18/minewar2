@@ -1,0 +1,20 @@
+[gd_scene format=3 uid="uid://dqg4wgwvv641f"]
+
+[ext_resource type="PackedScene" uid="uid://cg3q1pqc4ly0a" path="res://sence/Fight/soldier.tscn" id="1_w22h0"]
+[ext_resource type="Script" uid="uid://bnyvvl3xa1yyh" path="res://script/Fight/steve.gd" id="2_r2rcw"]
+[ext_resource type="SpriteFrames" uid="uid://ce1fjmf0se0cd" path="res://sence/Fight/Soldier/steve.tres" id="3_54l0y"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_54l0y"]
+
+[node name="Steve" unique_id=157177304 instance=ExtResource("1_w22h0")]
+script = ExtResource("2_r2rcw")
+
+[node name="AnimatedSprite2D" parent="." index="0" unique_id=350929437]
+scale = Vector2(3, 3)
+sprite_frames = ExtResource("3_54l0y")
+
+[node name="RayCast2D" parent="." index="1" unique_id=821862834]
+target_position = Vector2(20, 0)
+
+[node name="CollisionShape2D" parent="." index="2" unique_id=1979548709]
+shape = SubResource("RectangleShape2D_54l0y")

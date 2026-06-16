@@ -1,0 +1,29 @@
+config_version=5
+
+[application]
+
+config/name="Minewar2 new"
+run/main_scene="uid://cfc432rwdjvwn"
+config/features=PackedStringArray("4.6", "GL Compatibility")
+config/icon="res://icon.svg"
+
+[display]
+
+window/size/viewport_width=835
+window/size/viewport_height=450
+
+[layer_names]
+
+2d_physics/layer_1="我方"
+2d_physics/layer_2="敌方"
+
+[physics]
+
+3d/physics_engine="Jolt Physics"
+
+[rendering]
+
+textures/canvas_textures/default_texture_filter=0
+rendering_device/driver.windows="d3d12"
+renderer/rendering_method="gl_compatibility"
+renderer/rendering_method.mobile="gl_compatibility"

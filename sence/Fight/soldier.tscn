@@ -1,0 +1,29 @@
+[gd_scene format=3 uid="uid://cg3q1pqc4ly0a"]
+
+[ext_resource type="Script" uid="uid://sm8hm0y30qnt" path="res://script/soldier.gd" id="1_c73pu"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_c73pu"]
+animations = [{
+"frames": [],
+"loop": true,
+"name": &"attack",
+"speed": 5.0
+}, {
+"frames": [],
+"loop": true,
+"name": &"walk",
+"speed": 5.0
+}]
+
+[node name="Main" type="CharacterBody2D" unique_id=157177304]
+script = ExtResource("1_c73pu")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=350929437]
+sprite_frames = SubResource("SpriteFrames_c73pu")
+animation = &"walk"
+autoplay = "walk"
+
+[node name="RayCast2D" type="RayCast2D" parent="." unique_id=821862834]
+target_position = Vector2(10, 0)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1979548709]

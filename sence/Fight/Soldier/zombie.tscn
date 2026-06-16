@@ -1,0 +1,22 @@
+[gd_scene format=3 uid="uid://qc5h4ve8xwep"]
+
+[ext_resource type="PackedScene" uid="uid://cg3q1pqc4ly0a" path="res://sence/Fight/soldier.tscn" id="1_duhh7"]
+[ext_resource type="Script" uid="uid://b22snottv12mg" path="res://script/Fight/zombie.gd" id="2_q7phn"]
+[ext_resource type="SpriteFrames" uid="uid://ce1fjmf0se0cd" path="res://sence/Fight/Soldier/steve.tres" id="3_q7phn"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_q7phn"]
+
+[node name="Main" unique_id=157177304 instance=ExtResource("1_duhh7")]
+script = ExtResource("2_q7phn")
+
+[node name="AnimatedSprite2D" parent="." index="0" unique_id=350929437]
+scale = Vector2(3, 3)
+sprite_frames = ExtResource("3_q7phn")
+animation = &"attack"
+flip_h = true
+
+[node name="RayCast2D" parent="." index="1" unique_id=821862834]
+target_position = Vector2(-20, 0)
+
+[node name="CollisionShape2D" parent="." index="2" unique_id=1979548709]
+shape = SubResource("RectangleShape2D_q7phn")

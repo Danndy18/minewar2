@@ -1,0 +1,18 @@
+[gd_scene format=3 uid="uid://cfc432rwdjvwn"]
+
+[ext_resource type="Texture2D" uid="uid://c514ve1tfp50w" path="res://rescourse/background/background1.png" id="1_0ful4"]
+[ext_resource type="PackedScene" uid="uid://dqg4wgwvv641f" path="res://sence/Fight/Soldier/steve.tscn" id="2_oxsgi"]
+[ext_resource type="PackedScene" uid="uid://qc5h4ve8xwep" path="res://sence/Fight/Soldier/zombie.tscn" id="3_tcsuw"]
+
+[node name="Fight" type="Node2D" unique_id=1177349430]
+
+[node name="TextureRect" type="TextureRect" parent="." unique_id=2012790439]
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("1_0ful4")
+
+[node name="Steve" parent="." unique_id=157177304 instance=ExtResource("2_oxsgi")]
+position = Vector2(170, 300)
+
+[node name="Main" parent="." unique_id=1317088483 instance=ExtResource("3_tcsuw")]
+position = Vector2(260, 300)
