@@ -1,0 +1,8 @@
+[gd_resource type="Resource" format=3 uid="uid://dcdx7jloid2ch"]
+
+[ext_resource type="Script" uid="uid://drievfxbtjh7j" path="res://sence/equipment/AI/ai模板/ai_gang.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+ai_name = "群殴者"
+priority = 1

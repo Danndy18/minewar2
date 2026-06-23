@@ -1,0 +1,8 @@
+[gd_resource type="Resource" format=3 uid="uid://brva1vlxbur8g"]
+
+[ext_resource type="Script" uid="uid://cyvnb10sg1b3i" path="res://sence/equipment/ai/ai模板/ai_follow_shield.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+ai_name = "跟紧盾牌"
+priority = 60

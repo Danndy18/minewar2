@@ -1,0 +1,16 @@
+[gd_scene format=3 uid="uid://buwpwpoyhpmr8"]
+
+[ext_resource type="Script" uid="uid://cyetc3fsdc5fh" path="res://sence/equipment/装备/护甲/护甲父对象/armor.gd" id="1"]
+[ext_resource type="SpriteFrames" uid="uid://g0flcu2cdu01" path="res://rescourse/object/character/humanlike/equipment/armor/chain/chain_helmet/chain_helmet.tres" id="2"]
+[ext_resource type="SpriteFrames" uid="uid://cexeivti562m1" path="res://rescourse/object/character/humanlike/equipment/armor/chain/chain_helmet/chain_helmet_outline.tres" id="3"]
+
+[node name="链盔" type="Area2D" unique_id=1256733219]
+script = ExtResource("1")
+damage_taken = 0.95
+armor_frames = ExtResource("2")
+equipment_name = "链盔"
+outline_frames = ExtResource("3")
+
+[node name="ArmorSprite" type="AnimatedSprite2D" parent="." unique_id=2017966626]
+sprite_frames = ExtResource("2")
+animation = &"上半身-站立-空手"

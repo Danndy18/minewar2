@@ -1,0 +1,12 @@
+[gd_scene format=3 uid="uid://cveigv6evt153"]
+
+[ext_resource type="PackedScene" uid="uid://bvai80eeqejv2" path="res://sence/equipment/装备/武器/武器库/斧/weapon_template.tscn" id="1"]
+[ext_resource type="Script" uid="uid://dx3jjjat2bnub" path="res://sence/equipment/装备/武器/武器父对象/attack_method_data.gd" id="2"]
+[ext_resource type="Resource" uid="uid://csmxefcs7gs2p" path="res://sence/equipment/装备/武器/武器库/斧/斧子类/atk_heavy_fast.tres" id="3"]
+
+[node name="木斧" unique_id=1035797343 instance=ExtResource("1")]
+attack_methods = Array[ExtResource("2")]([ExtResource("3")])
+attack_range = 20.0
+damage = 5
+equipment_name = "木斧"
+material_name = "木"

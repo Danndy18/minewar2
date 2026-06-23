@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="AttackMethodData" format=3 uid="uid://lnu5otwwbrym"]
+
+[ext_resource type="Script" uid="uid://dx3jjjat2bnub" path="res://sence/equipment/装备/武器/武器父对象/attack_method_data.gd" id="1"]
+[ext_resource type="PackedScene" path="res://sence/equipment/装备/武器/武器效果/近战攻击.tscn" id="2"]
+
+[resource]
+script = ExtResource("1")
+name = "单体攻击"
+effect = ExtResource("2")
+effect_aoe_damage = 0

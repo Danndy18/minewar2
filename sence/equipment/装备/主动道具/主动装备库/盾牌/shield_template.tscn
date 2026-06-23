@@ -1,0 +1,17 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://sence/equipment/装备/主动道具/shield_parent.gd" id="1"]
+[ext_resource type="SpriteFrames" uid="uid://dg16div067pad" path="res://rescourse/object/character/humanlike/equipment/shield/shield/shield.tres" id="2"]
+[ext_resource type="SpriteFrames" uid="uid://c8l03ra3r4duw" path="res://rescourse/object/character/humanlike/equipment/shield/shield/shield_outline.tres" id="3"]
+
+[node name="ShieldTemplate" type="Area2D"]
+script = ExtResource("1")
+equipment_name = "盾牌"
+sprite_node = NodePath("ShieldSprite")
+outline_frames = ExtResource("3")
+shield_sprite_node = NodePath("ShieldSprite")
+shield_health = 70
+max_shield_health = 70
+
+[node name="ShieldSprite" type="AnimatedSprite2D" parent="."]
+sprite_frames = ExtResource("2")

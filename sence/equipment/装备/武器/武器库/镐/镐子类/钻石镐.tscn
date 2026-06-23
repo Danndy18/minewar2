@@ -1,0 +1,11 @@
+[gd_scene format=3 uid="uid://c23njskk6qjcw"]
+
+[ext_resource type="PackedScene" path="res://sence/equipment/装备/武器/武器库/镐/weapon_template.tscn" id="1"]
+[ext_resource type="Script" uid="uid://dx3jjjat2bnub" path="res://sence/equipment/装备/武器/武器父对象/attack_method_data.gd" id="2"]
+[ext_resource type="Resource" uid="uid://c31xelwmg5jip" path="res://sence/equipment/装备/武器/武器库/镐/镐子类/atk_pick_diamond.tres" id="3"]
+
+[node name="钻石镐" unique_id=1857385868 instance=ExtResource("1")]
+attack_methods = Array[ExtResource("2")]([ExtResource("3")])
+attack_range = 20.0
+equipment_name = "钻石镐"
+material_name = "钻石"

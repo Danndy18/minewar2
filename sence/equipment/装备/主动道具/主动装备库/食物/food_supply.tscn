@@ -1,0 +1,16 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://sence/equipment/装备/主动道具/主动装备库/食物/food_supply.gd" id="1"]
+[ext_resource type="SpriteFrames" uid="uid://8qjhbyinlyd6" path="res://rescourse/object/character/humanlike/equipment/food/food_source.tres" id="2"]
+[ext_resource type="SpriteFrames" uid="uid://dy57n3qidi11i" path="res://rescourse/object/character/humanlike/equipment/food/food_outline.tres" id="3"]
+
+[node name="FoodSupply" type="Area2D"]
+script = ExtResource("1")
+equipment_name = "食物补给"
+sprite_node = NodePath("FoodSprite")
+food_count = 6
+food_volume = 5
+outline_frames = ExtResource("3")
+
+[node name="FoodSprite" type="AnimatedSprite2D" parent="."]
+sprite_frames = ExtResource("2")

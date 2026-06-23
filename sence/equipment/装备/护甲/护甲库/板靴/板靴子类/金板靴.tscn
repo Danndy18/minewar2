@@ -1,0 +1,9 @@
+[gd_scene format=3]
+
+[ext_resource type="PackedScene" path="res://sence/equipment/装备/护甲/护甲库/板靴/板靴.tscn" id="1"]
+
+[node name="金板靴" instance=ExtResource("1")]
+equipment_name = "金板靴"
+damage_taken = 1.0
+speed_penalty = 0.7
+material_name = "金"

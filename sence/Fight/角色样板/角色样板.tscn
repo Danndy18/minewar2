@@ -1,0 +1,42 @@
+[gd_scene format=3 uid="uid://dc33j33wk7228"]
+
+[ext_resource type="Script" uid="uid://v4hoorj50adi" path="res://sence/Fight/角色样板/角色样板.gd" id="1"]
+[ext_resource type="SpriteFrames" uid="uid://bedgduqoc2vag" path="res://rescourse/object/character/humanlike/player_pieces/def/def.tres" id="2"]
+[ext_resource type="SpriteFrames" uid="uid://b0bq11wd0rcrr" path="res://rescourse/object/character/humanlike/player_pieces/def/def_outline.tres" id="3"]
+[ext_resource type="PackedScene" uid="uid://bage7stvpoflk" path="res://sence/equipment/装备/武器/武器库/拳/weapon_template.tscn" id="4"]
+[ext_resource type="Resource" path="res://sence/equipment/ai/ai模板/ai_charge.tres" id="5"]
+
+[sub_resource type="RectangleShape2D" id="1"]
+size = Vector2(18, 20)
+
+[node name="角色样板" type="CharacterBody2D" unique_id=1539190144]
+script = ExtResource("1")
+frames = ExtResource("2")
+outline_frames = ExtResource("3")
+equipment_slots = Array[PackedScene]([ExtResource("4")])
+ai_data = ExtResource("5")
+
+[node name="AnimatedSprite2D_Upper" type="AnimatedSprite2D" parent="." unique_id=416791614]
+
+[node name="AnimatedSprite2D_Lower" type="AnimatedSprite2D" parent="." unique_id=2086165672]
+
+[node name="RayCast2D" type="RayCast2D" parent="." unique_id=298774412]
+target_position = Vector2(10, 0)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=751019521]
+position = Vector2(0, 6)
+shape = SubResource("1")
+
+[node name="attackTimer" type="Timer" parent="." unique_id=921635997]
+
+[node name="SelectArea" type="Area2D" parent="." unique_id=1944929973]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="SelectArea" unique_id=1311248278]
+position = Vector2(0, 6)
+shape = SubResource("1")
+
+[node name="AttackArea" type="Area2D" parent="." unique_id=1799919378]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AttackArea" unique_id=994665998]
+position = Vector2(12, 3.33)
+shape = SubResource("1")

@@ -1,0 +1,18 @@
+[gd_scene format=3 uid="uid://cuva22yjd7k41"]
+
+[ext_resource type="Script" uid="uid://cx6cg1jdy5qtt" path="res://sence/equipment/装备/护甲/护甲库/板靴/板靴.gd" id="1"]
+[ext_resource type="SpriteFrames" uid="uid://clu8l1owvjh72" path="res://rescourse/object/character/humanlike/equipment/armor/plate/plate_boots/plate_boots.tres" id="2"]
+[ext_resource type="SpriteFrames" uid="uid://b0nrfkoefv38m" path="res://rescourse/object/character/humanlike/equipment/armor/plate/plate_boots/plate_boots_outline.tres" id="3"]
+
+[node name="板靴" type="Area2D" unique_id=484285348]
+script = ExtResource("1")
+equipment_name = "板靴"
+armor_slot = 1
+damage_taken = 0.95
+speed_penalty = 0.85
+armor_frames = ExtResource("2")
+outline_frames = ExtResource("3")
+
+[node name="ArmorSprite" type="AnimatedSprite2D" parent="." unique_id=489783303]
+sprite_frames = ExtResource("2")
+animation = &"上半身-站立-空手"

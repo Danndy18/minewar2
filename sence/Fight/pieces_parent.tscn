@@ -1,0 +1,36 @@
+[gd_scene format=3 uid="uid://b4isdhco6ua1"]
+
+[ext_resource type="Script" uid="uid://b3dk8vukppn48" path="res://script/pieces_parent.gd" id="1"]
+[ext_resource type="SpriteFrames" uid="uid://bep2eq2y6y3m5" path="res://rescourse/object/character/humanlike/player_pieces/def/def.tres" id="2_brhif"]
+[ext_resource type="SpriteFrames" uid="uid://dj1t6o2k7iq4x" path="res://rescourse/object/character/humanlike/player_pieces/def/def_outline.tres" id="3_kayph"]
+
+[sub_resource type="RectangleShape2D" id="1"]
+size = Vector2(18, 20)
+
+[node name="PiecesParent" type="CharacterBody2D" unique_id=1773353130]
+script = ExtResource("1")
+frames = ExtResource("2_brhif")
+outline_frames = ExtResource("3_kayph")
+
+[node name="AnimatedSprite2D_Upper" type="AnimatedSprite2D" parent="." unique_id=684945493]
+
+[node name="AnimatedSprite2D_Lower" type="AnimatedSprite2D" parent="." unique_id=865928605]
+
+[node name="RayCast2D" type="RayCast2D" parent="." unique_id=500815906]
+target_position = Vector2(10, 0)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=605510201]
+position = Vector2(0, 6)
+shape = SubResource("1")
+
+[node name="attackTimer" type="Timer" parent="." unique_id=1689496061]
+
+[node name="SelectArea" type="Area2D" parent="." unique_id=351898889]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="SelectArea" unique_id=983438796]
+position = Vector2(0, 6)
+shape = SubResource("1")
+
+[node name="AttackArea" type="Area2D" parent="." unique_id=554256599]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AttackArea" unique_id=1738771207]

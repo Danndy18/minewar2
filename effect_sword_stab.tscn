@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://dk8ophr0raehf"]
+
+[ext_resource type="Script" path="res://script/effect_sword_stab.gd" id="1_w133d"]
+
+[node name="EffectSwordStab" type="Node2D" unique_id=1573160094]
+script = ExtResource("1_w133d")

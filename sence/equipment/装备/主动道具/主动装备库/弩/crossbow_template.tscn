@@ -1,0 +1,16 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://sence/equipment/装备/主动道具/crossbow_parent.gd" id="1"]
+[ext_resource type="SpriteFrames" path="res://rescourse/object/character/humanlike/equipment/crossbow/crossbow/crossbow.tres" id="2"]
+[ext_resource type="SpriteFrames" path="res://rescourse/object/character/humanlike/equipment/crossbow/crossbow/crossbow_outline.tres" id="3"]
+
+[node name="Crossbow" type="Area2D"]
+script = ExtResource("1")
+equipment_name = "弩"
+sprite_node = NodePath("CrossbowSprite")
+outline_frames = ExtResource("3")
+ammo = 1
+reload_frames = 120
+
+[node name="CrossbowSprite" type="AnimatedSprite2D" parent="."]
+sprite_frames = ExtResource("2")

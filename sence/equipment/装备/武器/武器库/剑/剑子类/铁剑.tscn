@@ -1,0 +1,11 @@
+[gd_scene format=3 uid="uid://cwoj2ru1jug4n"]
+
+[ext_resource type="PackedScene" uid="uid://dqtwxot5w2ak4" path="res://sence/equipment/装备/武器/武器库/剑/weapon_template.tscn" id="1"]
+[ext_resource type="Script" uid="uid://dx3jjjat2bnub" path="res://sence/equipment/装备/武器/武器父对象/attack_method_data.gd" id="2"]
+[ext_resource type="Resource" path="res://sence/equipment/装备/武器/武器库/剑/atk_swing_medium.tres" id="3"]
+[ext_resource type="Resource" uid="uid://c2l47mskaexrm" path="res://sence/equipment/装备/武器/武器库/剑/atk_thrust.tres" id="4"]
+
+[node name="铁剑" unique_id=433380158 instance=ExtResource("1")]
+attack_methods = Array[ExtResource("2")]([ExtResource("3"), ExtResource("4")])
+damage = 4
+equipment_name = "铁剑"

@@ -1,0 +1,18 @@
+[gd_scene format=3 load_steps=4]
+
+[ext_resource type="Script" path="res://sence/equipment/装备/护甲/护甲父对象/armor.gd" id="1"]
+[ext_resource type="SpriteFrames" path="res://rescourse/object/character/humanlike/equipment/armor/plate/plate_helmet/plate_helmet.tres" id="2"]
+[ext_resource type="SpriteFrames" path="res://rescourse/object/character/humanlike/equipment/armor/plate/plate_helmet/plate_helmet_outline.tres" id="3"]
+
+[node name="金板盔" type="Area2D"]
+script = ExtResource("1")
+equipment_name = "金板盔"
+armor_slot = 0
+damage_taken = 1.0
+speed_penalty = 0.9
+armor_frames = ExtResource("2")
+outline_frames = ExtResource("3")
+material_name = "金"
+
+[node name="ArmorSprite" type="AnimatedSprite2D" parent="."]
+sprite_frames = ExtResource("2")

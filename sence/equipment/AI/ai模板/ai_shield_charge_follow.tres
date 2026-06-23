@@ -1,0 +1,11 @@
+[gd_resource type="Resource" format=3 uid="uid://sj8ffim6sxaw"]
+
+[ext_resource type="Script" uid="uid://cr35c5ixsqyl0" path="res://sence/equipment/ai/ai父对象/ai_container.gd" id="1"]
+[ext_resource type="Resource" uid="uid://brva1vlxbur8g" path="res://sence/equipment/ai/ai模板/ai_follow_shield.tres" id="2"]
+[ext_resource type="Resource" uid="uid://bnkthdygt0v5k" path="res://sence/equipment/ai/ai模板/ai_shield.tres" id="3"]
+[ext_resource type="Resource" uid="uid://yscxjlgb7lha" path="res://sence/equipment/ai/ai模板/ai_charge.tres" id="4"]
+
+[resource]
+script = ExtResource("1")
+modules = Array[Resource]([ExtResource("2"), ExtResource("3"), ExtResource("4")])
+ai_name = "盾牌冲锋（跟紧）"

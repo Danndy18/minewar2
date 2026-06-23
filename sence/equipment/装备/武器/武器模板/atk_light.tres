@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="AttackMethodData" format=3 uid="uid://bswgjtc7ob5kj"]
+
+[ext_resource type="PackedScene" path="res://sence/equipment/装备/武器/武器效果/近战攻击.tscn" id="1_nnekl"]
+[ext_resource type="Script" uid="uid://dx3jjjat2bnub" path="res://sence/equipment/装备/武器/武器父对象/attack_method_data.gd" id="2_vbt5y"]
+
+[resource]
+script = ExtResource("2_vbt5y")
+name = "群体攻击"
+effect = ExtResource("1_nnekl")
+effect_range_add = 5

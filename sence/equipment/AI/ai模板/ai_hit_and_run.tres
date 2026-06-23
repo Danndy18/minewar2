@@ -1,0 +1,8 @@
+[gd_resource type="Resource" format=3 uid="uid://ccbfso8fxtc66"]
+
+[ext_resource type="Script" uid="uid://ok0ggvssards" path="res://sence/equipment/ai/ai模板/ai_hit_and_run.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+ai_name = "拉扯"
+priority = 20

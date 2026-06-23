@@ -1,0 +1,21 @@
+[gd_scene format=3 uid="uid://dqtwxot5w2ak4"]
+
+[ext_resource type="Script" uid="uid://b2rnw3msqqr8c" path="res://sence/equipment/装备/武器/武器父对象/weapon_parent.gd" id="1"]
+[ext_resource type="Script" uid="uid://dx3jjjat2bnub" path="res://sence/equipment/装备/武器/武器父对象/attack_method_data.gd" id="2"]
+[ext_resource type="Resource" uid="uid://bt32jknxovwrk" path="res://sence/equipment/装备/武器/武器库/剑/atk_swing.tres" id="3"]
+[ext_resource type="Resource" uid="uid://c2l47mskaexrm" path="res://sence/equipment/装备/武器/武器库/剑/atk_thrust.tres" id="4"]
+[ext_resource type="SpriteFrames" uid="uid://d4g2e4832vli8" path="res://rescourse/object/character/humanlike/equipment/weapons/sword/sword.tres" id="5"]
+[ext_resource type="SpriteFrames" uid="uid://bekbrv8i8lnx" path="res://rescourse/object/character/humanlike/equipment/weapons/sword/sword_outline.tres" id="6"]
+
+[node name="WeaponTemplate2" type="Area2D" unique_id=804939905]
+script = ExtResource("1")
+weapon_frames = ExtResource("5")
+weapon_type = "剑"
+attack_methods = Array[ExtResource("2")]([ExtResource("3"), ExtResource("4")])
+attack_range = 23.0
+damage = 5
+equipment_name = "剑"
+outline_frames = ExtResource("6")
+sprite_node = NodePath("WeaponSprite")
+
+[node name="WeaponSprite" type="AnimatedSprite2D" parent="." unique_id=519042840]

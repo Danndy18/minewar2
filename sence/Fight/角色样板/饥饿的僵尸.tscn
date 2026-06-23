@@ -1,0 +1,44 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://sence/Fight/角色样板/饥饿的僵尸.gd" id="1"]
+[ext_resource type="SpriteFrames" path="res://rescourse/object/character/humanlike/enemy_pieces/zombie/zombie.tres" id="2"]
+[ext_resource type="SpriteFrames" path="res://rescourse/object/character/humanlike/enemy_pieces/zombie/zombie_outline.tres" id="3"]
+[ext_resource type="PackedScene" path="res://sence/equipment/装备/武器/武器库/僵尸之爪/weapon_template.tscn" id="4"]
+[ext_resource type="Resource" path="res://sence/equipment/AI/ai模板/ai_eat.tres" id="5"]
+[ext_resource type="PackedScene" path="res://sence/equipment/装备/主动道具/主动装备库/食物/food_supply.tscn" id="6"]
+
+[sub_resource type="RectangleShape2D" id="1"]
+size = Vector2(18, 20)
+
+[node name="饥饿的僵尸" type="CharacterBody2D"]
+script = ExtResource("1")
+frames = ExtResource("2")
+outline_frames = ExtResource("3")
+equipment_slots = Array[PackedScene]([ExtResource("4")])
+active_slots = Array[PackedScene]([ExtResource("6")])
+ai_modules = Array[Resource]([ExtResource("5")])
+
+[node name="AnimatedSprite2D_Upper" type="AnimatedSprite2D" parent="."]
+
+[node name="AnimatedSprite2D_Lower" type="AnimatedSprite2D" parent="."]
+
+[node name="RayCast2D" type="RayCast2D" parent="."]
+target_position = Vector2(10, 0)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 6)
+shape = SubResource("1")
+
+[node name="attackTimer" type="Timer" parent="."]
+
+[node name="SelectArea" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="SelectArea"]
+position = Vector2(0, 6)
+shape = SubResource("1")
+
+[node name="AttackArea" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AttackArea"]
+position = Vector2(12, 3.33)
+shape = SubResource("1")

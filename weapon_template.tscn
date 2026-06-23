@@ -1,0 +1,15 @@
+[gd_scene format=3 uid="uid://cted1w0oksuy7"]
+
+[ext_resource type="Script" path="res://script/equipment.gd" id="1_x0gqj"]
+[ext_resource type="Script" path="res://script/attack_method_data.gd" id="2_qcbhp"]
+[ext_resource type="Resource" path="res://sence/equipment/武器模板/atk_single.tres" id="3_41g7c"]
+[ext_resource type="Resource" path="res://sence/equipment/武器模板/atk_aoe.tres" id="4_rowpf"]
+
+[node name="WeaponTemplate" type="Node2D" unique_id=66217396]
+script = ExtResource("1_x0gqj")
+equipment_name = "武器名称"
+weapon_type = "武器类型"
+attack_methods = Array[ExtResource("2_qcbhp")]([ExtResource("3_41g7c"), ExtResource("4_rowpf")])
+attack_range = 15.0
+
+[node name="WeaponSprite" type="AnimatedSprite2D" parent="." unique_id=1730777977]

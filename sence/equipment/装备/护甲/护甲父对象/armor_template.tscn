@@ -1,0 +1,10 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://sence/equipment/装备/护甲/护甲父对象/armor.gd" id="1"]
+
+[node name="ArmorTemplate" type="Area2D"]
+script = ExtResource("1")
+equipment_name = "护甲名称"
+armor_slot = 0
+
+[node name="ArmorSprite" type="AnimatedSprite2D" parent="."]

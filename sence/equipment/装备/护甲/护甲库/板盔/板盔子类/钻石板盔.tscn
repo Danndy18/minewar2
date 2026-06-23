@@ -1,0 +1,8 @@
+[gd_scene format=3]
+
+[ext_resource type="PackedScene" path="res://sence/equipment/装备/护甲/护甲库/板盔/板盔.tscn" id="1"]
+
+[node name="钻石板盔" instance=ExtResource("1")]
+equipment_name = "钻石板盔"
+durability = 3
+material_name = "钻石"

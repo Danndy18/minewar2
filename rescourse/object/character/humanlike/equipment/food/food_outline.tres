@@ -1,0 +1,162 @@
+[gd_resource type="SpriteFrames" format=3 uid="uid://dy57n3qidi11i"]
+
+[ext_resource type="Texture2D" uid="uid://ciibyg3y2nn34" path="res://rescourse/object/character/humanlike/equipment/food/food_outline.png" id="1_7a16p"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gxm5t"]
+atlas = ExtResource("1_7a16p")
+region = Rect2(0, 0, 64, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ic67g"]
+atlas = ExtResource("1_7a16p")
+region = Rect2(64, 0, 64, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_khwdb"]
+atlas = ExtResource("1_7a16p")
+region = Rect2(128, 0, 64, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_x1m0l"]
+atlas = ExtResource("1_7a16p")
+region = Rect2(0, 32, 64, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qycan"]
+atlas = ExtResource("1_7a16p")
+region = Rect2(64, 32, 64, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_iwe56"]
+atlas = ExtResource("1_7a16p")
+region = Rect2(128, 32, 64, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3dxyc"]
+atlas = ExtResource("1_7a16p")
+region = Rect2(0, 64, 64, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_g2yfx"]
+atlas = ExtResource("1_7a16p")
+region = Rect2(64, 64, 64, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pjx0v"]
+atlas = ExtResource("1_7a16p")
+region = Rect2(128, 64, 64, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nws0q"]
+atlas = ExtResource("1_7a16p")
+region = Rect2(0, 96, 64, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dbytv"]
+atlas = ExtResource("1_7a16p")
+region = Rect2(64, 96, 64, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wsahg"]
+atlas = ExtResource("1_7a16p")
+region = Rect2(128, 96, 64, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_g0wuu"]
+atlas = ExtResource("1_7a16p")
+region = Rect2(0, 128, 64, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yfrdw"]
+atlas = ExtResource("1_7a16p")
+region = Rect2(64, 128, 64, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gt2dp"]
+atlas = ExtResource("1_7a16p")
+region = Rect2(128, 128, 64, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_neab0"]
+atlas = ExtResource("1_7a16p")
+region = Rect2(0, 160, 64, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fehej"]
+atlas = ExtResource("1_7a16p")
+region = Rect2(64, 160, 64, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5cmdr"]
+atlas = ExtResource("1_7a16p")
+region = Rect2(128, 160, 64, 32)
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gxm5t")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ic67g")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_khwdb")
+}],
+"loop": 1,
+"name": &"food_1",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_x1m0l")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qycan")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_iwe56")
+}],
+"loop": 1,
+"name": &"food_2",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3dxyc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_g2yfx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pjx0v")
+}],
+"loop": 1,
+"name": &"food_3",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nws0q")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dbytv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wsahg")
+}],
+"loop": 1,
+"name": &"food_4",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_g0wuu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yfrdw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gt2dp")
+}],
+"loop": 1,
+"name": &"food_5",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_neab0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fehej")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5cmdr")
+}],
+"loop": 1,
+"name": &"food_6",
+"speed": 5.0
+}]

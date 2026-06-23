@@ -1,0 +1,23 @@
+[gd_scene format=3 uid="uid://ccblvr3ift7p1"]
+
+[ext_resource type="Script" uid="uid://dn3tpismjk1aq" path="res://script/pieces_test.gd" id="1"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_pyf3o"]
+size = Vector2(1647, 53.5)
+
+[node name="PiecesTest" type="Node2D" unique_id=344604428]
+script = ExtResource("1")
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=1488506918]
+
+[node name="Ground" type="Area2D" parent="." unique_id=1746857851]
+z_index = 100
+position = Vector2(0, 200)
+collision_layer = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Ground" unique_id=477070584]
+position = Vector2(2, -125)
+shape = SubResource("RectangleShape2D_pyf3o")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=144546070]
+visible = false

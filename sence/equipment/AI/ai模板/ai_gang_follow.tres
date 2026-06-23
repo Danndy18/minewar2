@@ -1,0 +1,10 @@
+[gd_resource type="Resource" format=3 uid="uid://bqg0fxr1l7wr"]
+
+[ext_resource type="Script" uid="uid://cr35c5ixsqyl0" path="res://sence/equipment/ai/ai父对象/ai_container.gd" id="1"]
+[ext_resource type="Resource" uid="uid://brva1vlxbur8g" path="res://sence/equipment/ai/ai模板/ai_follow_shield.tres" id="2"]
+[ext_resource type="Resource" uid="uid://dcdx7jloid2ch" path="res://sence/equipment/ai/ai模板/ai_gang.tres" id="3"]
+
+[resource]
+script = ExtResource("1")
+modules = Array[Resource]([ExtResource("2"), ExtResource("3")])
+ai_name = "弓手（跟随+群殴）"

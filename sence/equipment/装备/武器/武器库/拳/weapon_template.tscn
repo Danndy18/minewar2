@@ -1,0 +1,16 @@
+[gd_scene format=3 uid="uid://bage7stvpoflk"]
+
+[ext_resource type="Script" uid="uid://b2rnw3msqqr8c" path="res://sence/equipment/装备/武器/武器父对象/weapon_parent.gd" id="1"]
+[ext_resource type="Script" uid="uid://dx3jjjat2bnub" path="res://sence/equipment/装备/武器/武器父对象/attack_method_data.gd" id="2"]
+[ext_resource type="Resource" uid="uid://dbpak4cmas1u6" path="res://sence/equipment/装备/武器/武器库/拳/atk_light.tres" id="3"]
+
+[node name="WeaponTemplate" type="Area2D" unique_id=2133731771]
+script = ExtResource("1")
+weapon_type = "拳"
+attack_methods = Array[ExtResource("2")]([ExtResource("3")])
+attack_range = 20.0
+use_weapon_stance = false
+equipment_name = "拳头"
+sprite_node = NodePath("WeaponSprite")
+
+[node name="WeaponSprite" type="AnimatedSprite2D" parent="." unique_id=1243089568]

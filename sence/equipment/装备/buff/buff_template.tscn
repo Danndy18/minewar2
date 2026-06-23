@@ -1,0 +1,6 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://sence/equipment/装备/buff/buff_parent.gd" id="1"]
+
+[node name="BuffTemplate" type="Node"]
+script = ExtResource("1")

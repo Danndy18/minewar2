@@ -1,0 +1,11 @@
+[gd_scene format=3 uid="uid://db256y4dc27oy"]
+
+[ext_resource type="PackedScene" path="res://sence/equipment/装备/护甲/护甲库/护腿/护腿.tscn" id="1"]
+
+[node name="金护腿" unique_id=1904015920 instance=ExtResource("1")]
+damage_taken = 0.9
+equipment_name = "金护腿"
+material_name = "金"
+
+[node name="ArmorSprite" parent="." index="0"]
+animation = &"上半身-站立-空手"

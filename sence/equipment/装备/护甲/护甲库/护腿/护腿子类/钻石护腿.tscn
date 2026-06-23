@@ -1,0 +1,12 @@
+[gd_scene format=3 uid="uid://tyl8uqpj6ftr"]
+
+[ext_resource type="PackedScene" path="res://sence/equipment/装备/护甲/护甲库/护腿/护腿.tscn" id="1"]
+
+[node name="钻石护腿" unique_id=1797116733 instance=ExtResource("1")]
+damage_taken = 0.7
+speed_penalty = 0.9
+equipment_name = "钻石护腿"
+material_name = "钻石"
+
+[node name="ArmorSprite" parent="." index="0"]
+animation = &"上半身-站立-空手"

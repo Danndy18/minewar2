@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://821eo77e8p2n"]
+
+[ext_resource type="Script" path="res://script/effect_sword_slash.gd" id="1_20fvq"]
+
+[node name="EffectSwordSlash" type="Node2D" unique_id=1291555609]
+script = ExtResource("1_20fvq")

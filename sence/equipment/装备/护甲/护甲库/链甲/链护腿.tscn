@@ -1,0 +1,17 @@
+[gd_scene format=3 uid="uid://khhp3y1ubfwp"]
+
+[ext_resource type="Script" uid="uid://cyetc3fsdc5fh" path="res://sence/equipment/装备/护甲/护甲父对象/armor.gd" id="1"]
+[ext_resource type="SpriteFrames" uid="uid://bwoahgad48h7n" path="res://rescourse/object/character/humanlike/equipment/armor/chain/chain_leggings/chain_leggings.tres" id="2"]
+[ext_resource type="SpriteFrames" uid="uid://c0d4jjsdxpk5i" path="res://rescourse/object/character/humanlike/equipment/armor/chain/chain_leggings/chain_leggings_outline.tres" id="3"]
+
+[node name="链护腿" type="Area2D" unique_id=1142055109]
+script = ExtResource("1")
+armor_slot = 1
+damage_taken = 0.9
+armor_frames = ExtResource("2")
+equipment_name = "链护腿"
+outline_frames = ExtResource("3")
+
+[node name="ArmorSprite" type="AnimatedSprite2D" parent="." unique_id=1223006617]
+sprite_frames = ExtResource("2")
+animation = &"上半身-站立-空手"

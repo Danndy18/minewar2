@@ -1,0 +1,8 @@
+[gd_resource type="Resource" format=3 uid="uid://bnkthdygt0v5k"]
+
+[ext_resource type="Script" uid="uid://c7n0kpcfth2ga" path="res://sence/equipment/ai/ai模板/ai_shield.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+ai_name = "盾牌使用"
+priority = 40

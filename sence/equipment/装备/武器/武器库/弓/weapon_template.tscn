@@ -1,0 +1,20 @@
+[gd_scene format=3 uid="uid://c1d2mk6vmvcfl"]
+
+[ext_resource type="Script" uid="uid://b2rnw3msqqr8c" path="res://sence/equipment/装备/武器/武器父对象/weapon_parent.gd" id="1"]
+[ext_resource type="Script" uid="uid://dx3jjjat2bnub" path="res://sence/equipment/装备/武器/武器父对象/attack_method_data.gd" id="2"]
+[ext_resource type="Resource" uid="uid://bhc3ll4ym6mcq" path="res://sence/equipment/装备/武器/武器库/弓/atk_shoot.tres" id="3"]
+[ext_resource type="SpriteFrames" uid="uid://cwqyopl7y6h7b" path="res://rescourse/object/character/humanlike/equipment/weapons/bow/bow.tres" id="4"]
+[ext_resource type="SpriteFrames" uid="uid://c42kvpkfu47fo" path="res://rescourse/object/character/humanlike/equipment/weapons/bow/bow_outline.tres" id="5"]
+
+[node name="WeaponTemplate" type="Area2D" unique_id=463310120]
+script = ExtResource("1")
+weapon_frames = ExtResource("4")
+weapon_type = "弓"
+attack_methods = Array[ExtResource("2")]([ExtResource("3")])
+attack_range = 160.0
+damage = 7
+equipment_name = "弓"
+outline_frames = ExtResource("5")
+sprite_node = NodePath("WeaponSprite")
+
+[node name="WeaponSprite" type="AnimatedSprite2D" parent="." unique_id=69595695]

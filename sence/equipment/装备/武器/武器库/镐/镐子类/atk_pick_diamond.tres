@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="AttackMethodData" format=3 uid="uid://c31xelwmg5jip"]
+
+[ext_resource type="PackedScene" path="res://sence/equipment/装备/武器/武器效果/近战攻击_护甲破坏.tscn" id="1"]
+[ext_resource type="Script" uid="uid://dx3jjjat2bnub" path="res://sence/equipment/装备/武器/武器父对象/attack_method_data.gd" id="2"]
+
+[resource]
+script = ExtResource("2")
+name = "凿击"
+anim_mode = "重攻击"
+process_move = 0.4
+recovery_move = 0.4
+windup_speed = 1.6
+process_speed = 0.8
+recovery_speed = 1.6
+effect = ExtResource("1")
+buff_armor_break_frames = 20
+buff_armor_break_chance = 1.0

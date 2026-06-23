@@ -1,0 +1,8 @@
+[gd_resource type="Resource" format=3 uid="uid://yscxjlgb7lha"]
+
+[ext_resource type="Script" uid="uid://7i4wsxq5bsdn" path="res://sence/equipment/ai/ai模板/ai_charge.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+ai_name = "冲锋"
+priority = -1

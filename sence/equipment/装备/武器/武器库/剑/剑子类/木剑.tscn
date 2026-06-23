@@ -1,0 +1,8 @@
+[gd_scene format=3 uid="uid://c60oqqk1e1ktv"]
+
+[ext_resource type="PackedScene" uid="uid://dqtwxot5w2ak4" path="res://sence/equipment/装备/武器/武器库/剑/weapon_template.tscn" id="1"]
+
+[node name="木剑" unique_id=1874734462 instance=ExtResource("1")]
+damage = 4
+equipment_name = "木剑"
+material_name = "木"

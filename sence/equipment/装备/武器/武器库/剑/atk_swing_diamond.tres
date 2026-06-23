@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="AttackMethodData" format=3 uid="uid://70eambnmj1ht"]
+
+[ext_resource type="PackedScene" path="res://sence/equipment/装备/武器/武器效果/近战攻击.tscn" id="1"]
+[ext_resource type="Script" uid="uid://dx3jjjat2bnub" path="res://sence/equipment/装备/武器/武器父对象/attack_method_data.gd" id="2"]
+
+[resource]
+script = ExtResource("2")
+name = "横斩"
+weight = 5.0
+windup_move = 1.0
+process_move = 0.4
+recovery_move = 0.4
+windup_speed = 0.7
+effect = ExtResource("1")
+effect_aoe_damage = 3

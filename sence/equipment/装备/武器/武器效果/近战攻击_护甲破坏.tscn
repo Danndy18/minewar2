@@ -1,0 +1,10 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://sence/equipment/装备/武器/武器效果/近战攻击_护甲破坏.gd" id="1"]
+
+[node name="EffectMelee" type="Area2D"]
+script = ExtResource("1")
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+debug_color = Color(0.5, 0, 1, 0.2)
