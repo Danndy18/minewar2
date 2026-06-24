@@ -40,7 +40,7 @@ func _ready() -> void:
 
 	title_label = PIXEL_LABEL.new()
 	title_label.text = "窗口"
-	title_label.position = Vector2(4, 0)
+	title_label.position = Vector2(8, 2)
 	title_label.size = Vector2(window_width - BORDER * 2 - 8, 24)
 	title_bar.add_child(title_label)
 

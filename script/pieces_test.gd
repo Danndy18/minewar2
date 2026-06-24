@@ -92,8 +92,15 @@ var _config = {
 	"ai": [],
 }
 var _dragging: bool = false
-var _drag_start: Vector2 = Vector2.ZERO
-var _drag_end: Vector2 = Vector2.ZERO
+var _drag_start: Vector2
+var _drag_end: Vector2
+var _window_layer: CanvasLayer = null
+var _test_window: Node = null
+var _option_items: Array[String] = []
+var _option_clip: Control = null
+var _option_content: Control = null
+var _scroll_base: TextureRect = null
+var _scroll_btn: TextureRect = null
 
 
 func _ready():
@@ -783,6 +790,66 @@ func _input(event: InputEvent) -> void:
 		var cl = $CanvasLayer
 		cl.visible = not cl.visible
 		return
+	if event is InputEventKey and event.physical_keycode == KEY_F11 and event.pressed and not event.echo:
+		if _test_window and is_instance_valid(_test_window):
+			var n = _option_items.size() + 1
+			_option_items.append("测试物品" + str(n))
+			for c in _option_content.get_children():
+				c.queue_free()
+			var rows = _option_items.size()
+			_option_content.size = Vector2(306, rows * 40)
+			var opt_tex = load("res://rescourse/object/UI/windowsui/选项.png")
+			var icon_tex = load("res://rescourse/object/UI/windowsui/测试物品图标.png")
+			for idx in _option_items.size():
+				var opt_slot = Control.new()
+				opt_slot.position = Vector2(0, idx * 40)
+				opt_slot.size = Vector2(306, 40)
+				_option_content.add_child(opt_slot)
+				var bg = TextureRect.new()
+				bg.texture = opt_tex
+				bg.texture_filter = CanvasItem.TEXTURE_FILTER_NEAREST
+				bg.position = Vector2.ZERO
+				opt_slot.add_child(bg)
+				var icon = TextureRect.new()
+				icon.texture = icon_tex
+				icon.texture_filter = CanvasItem.TEXTURE_FILTER_NEAREST
+				icon.position = Vector2(4, 4)
+				opt_slot.add_child(icon)
+				var opt_font = preload("res://sence/ui/pixel_font.gd").get_font()
+				var label_wrap = Control.new()
+				label_wrap.position = Vector2(44, 5)
+				label_wrap.size = Vector2(54, 12)
+				label_wrap.mouse_filter = Control.MOUSE_FILTER_IGNORE
+				opt_slot.add_child(label_wrap)
+				var shadow = Label.new()
+				shadow.anchor_right = 1.0
+				shadow.anchor_bottom = 1.0
+				shadow.position = Vector2(1, 1)
+				shadow.add_theme_font_override("font", opt_font)
+				shadow.add_theme_font_size_override("font_size", 12)
+				shadow.add_theme_color_override("font_color", Color(0, 0, 0, 1))
+				shadow.texture_filter = CanvasItem.TEXTURE_FILTER_NEAREST
+				shadow.text = _option_items[idx]
+				label_wrap.add_child(shadow)
+				var front = Label.new()
+				front.anchor_right = 1.0
+				front.anchor_bottom = 1.0
+				front.add_theme_font_override("font", opt_font)
+				front.add_theme_font_size_override("font_size", 12)
+				front.add_theme_color_override("font_color", Color.WHITE)
+				front.texture_filter = CanvasItem.TEXTURE_FILTER_NEAREST
+				front.text = _option_items[idx]
+				label_wrap.add_child(front)
+				label_wrap.scale = Vector2(2, 2)
+			# 同步滚动条
+			_option_content.position.y = 0
+			if _scroll_btn:
+				_scroll_btn.position.y = 120 + 2
+				var mt = _scroll_base.size.y - _scroll_btn.texture.get_size().y - 4
+				var ct = _option_content.size.y - _option_clip.size.y
+				var r = clamp(-_option_content.position.y / ct if ct > 0 else 0.0, 0.0, 1.0)
+				_scroll_btn.position.y = 120 + 2 + mt * r
+		return
 	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT:
 		if event.pressed:
 			_drag_start = get_global_mouse_position()
@@ -859,13 +926,18 @@ func _open_test_window():
 	if not WindowScript:
 		return
 	var win = WindowScript.new()
-	win.window_width = 400
-	win.window_height = 300
+	win.window_width = 384
+	win.window_height = 308
 	var viewport = get_viewport()
-	win.window_pos_x = int((viewport.size.x - 400) / 2)
-	win.window_pos_y = int((viewport.size.y - 300) / 2)
+	win.window_pos_x = int((viewport.size.x - 384) / 2)
+	win.window_pos_y = int((viewport.size.y - 308) / 2)
 	_ensure_window_layer().add_child(win)
-	win.set_title("测试窗口")
+	win.set_title("模板配置")
+	_test_window = win
+
+	_option_items.clear()
+	for i in range(7):
+		_option_items.append("测试物品" + str(i + 1))
 
 	# 在内容区左上角放物品槽位网格，中间 2x3 替换为角色显示底板
 	var rows = 3
@@ -875,7 +947,7 @@ func _open_test_window():
 	var total_h = rows * slot
 	var holder = Control.new()
 	holder.position = Vector2(20, 44)
-	holder.size = Vector2(total_w, total_h)
+	holder.size = Vector2(356, 256)
 	win.add_child(holder)
 
 	for r in range(rows):
@@ -892,13 +964,217 @@ func _open_test_window():
 	char_bg.position = Vector2(1 * slot, 0)
 	holder.add_child(char_bg)
 
+	# 在角色底板上显示角色，3x 居中
+	var char_node = PREVIEW_SCENE.instantiate()
+	char_node.setup({})
+	char_node.scale = Vector2(3, 3)
+	char_node.position = Vector2(72, 35)
+	holder.add_child(char_node)
 
-var _window_layer: CanvasLayer = null
+	# 输入框，放在格子右侧，垂直居中
+	var input_holder = Control.new()
+	input_holder.position = Vector2(144 + 20, 0)
+	input_holder.size = Vector2(180, 38)
+	holder.add_child(input_holder)
+
+	var input_bg = TextureRect.new()
+	input_bg.texture = load("res://rescourse/object/UI/windowsui/输入框_活跃.png")
+	input_bg.texture_filter = CanvasItem.TEXTURE_FILTER_NEAREST
+	input_bg.position = Vector2.ZERO
+	input_holder.add_child(input_bg)
+
+	var input_wrap = Control.new()
+	input_wrap.position = Vector2(5, -4)
+	input_wrap.size = Vector2(82, 19)
+	input_wrap.texture_filter = CanvasItem.TEXTURE_FILTER_NEAREST
+	input_holder.add_child(input_wrap)
+
+	var f = load("res://rescourse/object/UI/simsun.ttc")
+	var fv = FontVariation.new()
+	fv.base_font = f
+	fv.set_spacing(TextServer.SPACING_GLYPH, 1)
+	var input_shadow = Label.new()
+	input_shadow.position = Vector2(1, 5)
+	input_shadow.size = Vector2(82, 19)
+	input_shadow.add_theme_font_override("font", fv)
+	input_shadow.add_theme_font_size_override("font_size", 12)
+	input_shadow.add_theme_color_override("font_color", Color(0, 0, 0, 1))
+	input_shadow.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	input_wrap.add_child(input_shadow)
+
+	var input_edit = LineEdit.new()
+	input_edit.anchor_right = 1.0
+	input_edit.anchor_bottom = 1.0
+	input_edit.add_theme_font_override("font", fv)
+	input_edit.add_theme_font_size_override("font_size", 12)
+	input_edit.add_theme_color_override("font_color", Color.WHITE)
+	input_edit.add_theme_color_override("background_color", Color(0, 0, 0, 0))
+	input_edit.add_theme_stylebox_override("normal", StyleBoxEmpty.new())
+	input_edit.add_theme_stylebox_override("focus", StyleBoxEmpty.new())
+	input_edit.add_theme_constant_override("minimum_character_width", 0)
+	input_edit.placeholder_text = ""
+	input_edit.text_changed.connect(func(t): input_shadow.text = t)
+	input_wrap.add_child(input_edit)
+
+	input_wrap.scale = Vector2(2, 2)
+
+	# 输入框下方两个按钮，右对齐输入框
+	var btn_tex = load("res://rescourse/object/UI/windowsui/按钮.png")
+	for i in range(2):
+		var bx = 0 if i == 0 else 100
+		var btn_bg = TextureRect.new()
+		btn_bg.texture = btn_tex
+		btn_bg.texture_filter = CanvasItem.TEXTURE_FILTER_NEAREST
+		btn_bg.position = Vector2(144 + 20 + bx, 50)
+		holder.add_child(btn_bg)
+
+		var btn_label = preload("res://sence/ui/pixel_label_center.gd").new()
+		btn_label.text = "确认" if i == 0 else "清空"
+		btn_label.font_color = Color.BLACK
+		btn_label.position = Vector2(144 + 20 + bx, 50)
+		btn_label.size = Vector2(40, 20)
+		holder.add_child(btn_label)
+
+	# 选项展示窗，放在格子下方
+	var option_bg = TextureRect.new()
+	option_bg.texture = load("res://rescourse/object/UI/windowsui/选项展示窗.png")
+	option_bg.texture_filter = CanvasItem.TEXTURE_FILTER_NEAREST
+	option_bg.position = Vector2(0, 120)
+	holder.add_child(option_bg)
+
+	# 纯 Control 裁剪区替代 ScrollContainer，手动管理滚动
+	var clip = Control.new()
+	clip.clip_contents = true
+	clip.position = Vector2(4, 124)
+	clip.size = Vector2(306, 116)
+	clip.mouse_filter = Control.MOUSE_FILTER_STOP
+	holder.add_child(clip)
+	_option_clip = clip
+
+	var option_content = Control.new()
+	option_content.position = Vector2.ZERO
+	option_content.size = Vector2(306, 120)
+	clip.add_child(option_content)
+	_option_content = option_content
+
+	var opt_tex = load("res://rescourse/object/UI/windowsui/选项.png")
+	var icon_tex = load("res://rescourse/object/UI/windowsui/测试物品图标.png")
+
+	var build_options = func():
+		for c in option_content.get_children():
+			c.queue_free()
+		option_content.size = Vector2(306, _option_items.size() * 40)
+		for idx in _option_items.size():
+			var opt_slot = Control.new()
+			opt_slot.position = Vector2(0, idx * 40)
+			opt_slot.size = Vector2(306, 40)
+			option_content.add_child(opt_slot)
+
+			var bg = TextureRect.new()
+			bg.texture = opt_tex
+			bg.texture_filter = CanvasItem.TEXTURE_FILTER_NEAREST
+			bg.position = Vector2.ZERO
+			opt_slot.add_child(bg)
+
+			var icon = TextureRect.new()
+			icon.texture = icon_tex
+			icon.texture_filter = CanvasItem.TEXTURE_FILTER_NEAREST
+			icon.position = Vector2(4, 4)
+			opt_slot.add_child(icon)
+
+			var opt_font = preload("res://sence/ui/pixel_font.gd").get_font()
+			var label_wrap = Control.new()
+			label_wrap.position = Vector2(44, 5)
+			label_wrap.size = Vector2(54, 12)
+			label_wrap.mouse_filter = Control.MOUSE_FILTER_IGNORE
+			opt_slot.add_child(label_wrap)
+
+			var shadow = Label.new()
+			shadow.anchor_right = 1.0
+			shadow.anchor_bottom = 1.0
+			shadow.position = Vector2(1, 1)
+			shadow.add_theme_font_override("font", opt_font)
+			shadow.add_theme_font_size_override("font_size", 12)
+			shadow.add_theme_color_override("font_color", Color(0, 0, 0, 1))
+			shadow.texture_filter = CanvasItem.TEXTURE_FILTER_NEAREST
+			shadow.text = _option_items[idx]
+			label_wrap.add_child(shadow)
+
+			var front = Label.new()
+			front.anchor_right = 1.0
+			front.anchor_bottom = 1.0
+			front.add_theme_font_override("font", opt_font)
+			front.add_theme_font_size_override("font_size", 12)
+			front.add_theme_color_override("font_color", Color.WHITE)
+			front.texture_filter = CanvasItem.TEXTURE_FILTER_NEAREST
+			front.text = _option_items[idx]
+			label_wrap.add_child(front)
+
+			label_wrap.scale = Vector2(2, 2)
+
+	build_options.call()
+
+ 	# 右侧滚动条
+	var scroll_base = TextureRect.new()
+	scroll_base.texture = load("res://rescourse/object/UI/windowsui/滚动条底座.png")
+	scroll_base.texture_filter = CanvasItem.TEXTURE_FILTER_NEAREST
+	scroll_base.position = Vector2(316, 120)
+	holder.add_child(scroll_base)
+	_scroll_base = scroll_base
+
+	var scroll_btn = TextureRect.new()
+	scroll_btn.texture = load("res://rescourse/object/UI/windowsui/滚动条按钮.png")
+	scroll_btn.texture_filter = CanvasItem.TEXTURE_FILTER_NEAREST
+	scroll_btn.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	scroll_btn.position = Vector2(316 + 2, 120 + 2)
+	holder.add_child(scroll_btn)
+	_scroll_btn = scroll_btn
+
+	var max_travel = scroll_base.size.y - scroll_btn.texture.get_size().y - 4
+	var content_travel = option_content.size.y - clip.size.y
+
+	# 透明的轨道覆盖层处理所有拖拽事件（自身不移动，坐标不会漂移）
+	var track_area = Control.new()
+	track_area.position = Vector2(316, 120)
+	track_area.size = scroll_base.size
+	track_area.mouse_filter = Control.MOUSE_FILTER_STOP
+	holder.add_child(track_area)
+
+	var dragging = false
+	var drag_offset = 0.0
+
+	track_area.gui_input.connect(func(event):
+		if event is InputEventMouseButton:
+			if event.button_index == MOUSE_BUTTON_LEFT:
+				dragging = event.pressed
+				if dragging:
+					drag_offset = get_global_mouse_position().y - scroll_btn.global_position.y
+		if event is InputEventMouseMotion and dragging:
+			var target_global_y = get_global_mouse_position().y - drag_offset
+			var target_local_y = target_global_y - holder.global_position.y
+			var new_btn_y = clamp(target_local_y, 120 + 2, 120 + 2 + max_travel)
+			var r = (new_btn_y - (120 + 2)) / max_travel if max_travel > 0 else 0.0
+			r = clamp(r, 0.0, 1.0)
+			option_content.position.y = -content_travel * r
+			scroll_btn.position.y = new_btn_y
+	)
+
+	clip.gui_input.connect(func(event):
+		if event is InputEventMouseButton and event.pressed:
+			var step = 40.0 / content_travel if content_travel > 0 else 0.0
+			var r = -option_content.position.y / content_travel if content_travel > 0 else 0.0
+			if event.button_index == MOUSE_BUTTON_WHEEL_UP:
+				r = clamp(r - step, 0.0, 1.0)
+			if event.button_index == MOUSE_BUTTON_WHEEL_DOWN:
+				r = clamp(r + step, 0.0, 1.0)
+			option_content.position.y = -content_travel * r
+			scroll_btn.position.y = 120 + 2 + max_travel * r
+	)
 
 
 func _ensure_window_layer() -> CanvasLayer:
 	if not _window_layer:
 		_window_layer = CanvasLayer.new()
-		_window_layer.layer = 20
+		_window_layer.layer = 128
 		add_child(_window_layer)
 	return _window_layer
