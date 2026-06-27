@@ -1,0 +1,15 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://sence/equipment/装备/主动道具/主动装备库/方块/dispenser_template.gd" id="1"]
+[ext_resource type="SpriteFrames" path="res://rescourse/object/character/humanlike/equipment/block/dispenser/dispenser.tres" id="2"]
+[ext_resource type="SpriteFrames" path="res://rescourse/object/character/humanlike/equipment/block/dispenser/dispenser_outline.tres" id="3"]
+
+[node name="DispenserTemplate" type="Area2D"]
+script = ExtResource("1")
+equipment_name = "发射器"
+sprite_node = NodePath("BlockSprite")
+outline_frames = ExtResource("3")
+weight_mult = 0.6
+
+[node name="BlockSprite" type="AnimatedSprite2D" parent="."]
+sprite_frames = ExtResource("2")

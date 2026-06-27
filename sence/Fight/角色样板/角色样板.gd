@@ -9,6 +9,7 @@ extends "res://script/pieces_parent.gd"
 @export var template_knockback_duration: float = 0.33
 @export var template_taken_base: float = 1.0
 @export var template_armor_speed_penalty: float = 1.0
+@export var template_unguarded: bool = false
 
 func _ready() -> void:
 	health_limit = template_health_limit
@@ -21,4 +22,5 @@ func _ready() -> void:
 	knockback_duration = template_knockback_duration
 	_taken_base = template_taken_base
 	_armor_speed_penalty = template_armor_speed_penalty
+	unguarded = template_unguarded
 	super()

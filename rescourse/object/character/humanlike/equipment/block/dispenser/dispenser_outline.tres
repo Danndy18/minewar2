@@ -1,0 +1,40 @@
+[gd_resource type="SpriteFrames" format=3]
+
+[ext_resource type="Texture2D" path="res://rescourse/object/character/humanlike/equipment/block/dispenser/dispenser_outline.png" id="1_png"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0001"]
+atlas = ExtResource("1_png")
+region = Rect2(0, 0, 64, 32)
+
+[resource]
+animations = [{
+"frames": [{"duration": 1.0, "texture": SubResource("AtlasTexture_0001")}],
+"loop": true,
+"name": &"上半身-站立-空手",
+"speed": 5.0
+}, {
+"frames": [{"duration": 1.0, "texture": SubResource("AtlasTexture_0001")}],
+"loop": true,
+"name": &"上半身-站立-持物",
+"speed": 5.0
+}, {
+"frames": [{"duration": 1.0, "texture": SubResource("AtlasTexture_0001")}],
+"loop": true,
+"name": &"上半身-行走",
+"speed": 5.0
+}, {
+"frames": [{"duration": 1.0, "texture": SubResource("AtlasTexture_0001")}],
+"loop": true,
+"name": &"上半身-抬手",
+"speed": 5.0
+}, {
+"frames": [{"duration": 1.0, "texture": SubResource("AtlasTexture_0001")}],
+"loop": true,
+"name": &"上半身-单手抬手",
+"speed": 5.0
+}, {
+"frames": [{"duration": 1.0, "texture": SubResource("AtlasTexture_0001")}],
+"loop": true,
+"name": &"上半身-双手抬起",
+"speed": 5.0
+}]

@@ -1,6 +1,6 @@
-[gd_resource type="Resource" format=3]
+[gd_resource type="Resource" format=3 uid="uid://b0tx5sd6yanh6"]
 
-[ext_resource type="Script" path="res://sence/equipment/AI/ai模板/ai_eat.gd" id="1"]
+[ext_resource type="Script" uid="uid://dxe3yq1djx14q" path="res://sence/equipment/AI/ai模板/ai_eat.gd" id="1"]
 
 [resource]
 script = ExtResource("1")

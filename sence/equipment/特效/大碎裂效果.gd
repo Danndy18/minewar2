@@ -14,7 +14,7 @@ var _replace_3: Color
 var _replace_4: Color
 
 
-func setup(texture: Texture2D, region: Rect2, dir_x: int = 1, min_fragments: int = 4, max_fragments: int = 7, parent_z: int = 0, palette: Array[Color] = [], chip_size: int = 5):
+func setup(texture: Texture2D, region: Rect2, dir_x: int = 1, min_fragments: int = 4, max_fragments: int = 7, parent_z: int = 0, palette: Array[Color] = [], chip_size: int = 5, velocity_scale: float = 1.0):
 	var full_img = texture.get_image()
 	var sub_img = full_img.get_region(region)
 
@@ -81,8 +81,8 @@ func setup(texture: Texture2D, region: Rect2, dir_x: int = 1, min_fragments: int
 		container.add_child(spr)
 
 		add_child(container)
-		var vx = dir_x * randf_range(80, 180)
-		var vy = -randf_range(60, 120)
+		var vx = dir_x * randf_range(80, 180) * velocity_scale
+		var vy = -randf_range(60, 120) * velocity_scale
 		var spread = deg_to_rad(randf_range(-10.0, 10.0))
 		var cs = cos(spread)
 		var sn = sin(spread)

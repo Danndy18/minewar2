@@ -16,8 +16,16 @@ position = Vector2(0, 200)
 collision_layer = 4
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Ground" unique_id=477070584]
-position = Vector2(2, -125)
+z_index = -100
+position = Vector2(2, -131)
 shape = SubResource("RectangleShape2D_pyf3o")
+
+[node name="GroundBar" type="ColorRect" parent="Ground/CollisionShape2D" unique_id=180230671]
+offset_left = -832.0
+offset_top = -26.75
+offset_right = 828.0
+offset_bottom = -23.75
+color = Color(0, 0, 0, 1)
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=144546070]
 visible = false

@@ -165,8 +165,24 @@ var _eating_active: bool = false
 # 通用上半身动画覆盖（弩等主动道具使用）
 var _override_upper_anim: String = ""
 var _override_upper_frame: int = 0
+# 建造状态：正在建造时锁定移动、播放建造动画
+var _building_ref: Node = null
+var _building: bool = false
+var _build_frame: int = 0
+# 交互检测（F键）
+var _interact_frames_left: int = 0
+var _interact_check_area: Area2D = null
+var _prev_f_held: bool = false
+var _interact_triggered: bool = false
+var _auto_f: bool = false
+var _prev_shift_f_held: bool = false
+var _auto_f_timer: int = 0
 # 主动道具请求阻断近战攻击（弩瞄准/发射/装填时）
 var _block_attack: bool = false
+# 无戒备状态：不攻击，后退时转身正着跑
+var unguarded: bool = false
+# 无戒备时是否已经翻转朝向（避免重复翻转）
+var _unguarded_flipped: bool = false
 var _equipment_nodes: Array[Node] = []
 # buff 系统：轻量字典数组，process_buffs() 在池消费前处理
 var _active_buffs: Array[Dictionary] = []
@@ -329,8 +345,7 @@ func _ready() -> void:
 		ai_data = container
 
 	# 敌对方水平镜像反转（精灵+攻击框整体翻转向左）
-	if camp != 0:
-		scale.x *= -1
+	scale.x = abs(scale.x) * (-1 if camp != 0 else 1)
 
 	# 随机偏移防止完全重叠（横±6px）
 	position.x += randf_range(-6.0, 6.0)
@@ -467,6 +482,24 @@ func _physics_process(delta: float) -> void:
 		if is_instance_valid(e):
 			e.sync(self)
 
+	# 建造状态监控：引用丢失、死亡、或进场完成时解锁
+	if _building_ref:
+		if not is_instance_valid(_building_ref) or _building_ref.get("_dying") or _building_ref.get("_phase") == "normal":
+			_finish_building()
+
+	# 建造中强制禁止移动
+	if _building:
+		is_move = 0
+
+	# 交互碰撞箱：每帧检测重叠
+	if _interact_check_area and is_instance_valid(_interact_check_area) and not _interact_triggered:
+		for area in _interact_check_area.get_overlapping_areas():
+			var target = area.get_parent()
+			if target and target.get("can_interact") and target.can_interact(self):
+				target.interact(self)
+				_interact_triggered = true
+				break
+
 	# [读] 所有修正已写入，读池消费
 	move_speed_current = move_speed * effect_pool.move_speed
 	attack_range_current = attack_range * effect_pool.attack_range
@@ -474,7 +507,15 @@ func _physics_process(delta: float) -> void:
 	# 后退减速（阻止频繁拉扯，阵营不同撤退方向也不同）
 	var retreat_dir = -1 if camp == 0 else 1
 	if is_move == retreat_dir:
-		move_speed_current *= 0.6
+		if unguarded:
+			if not _unguarded_flipped:
+				scale.x *= -1
+				_unguarded_flipped = true
+		else:
+			move_speed_current *= 0.6
+	elif _unguarded_flipped:
+		scale.x *= -1
+		_unguarded_flipped = false
 
 	# 攻击判定框同步到当前范围
 	attack_area_collision_shape.extents = Vector2(attack_range_current * 0.5, 8.0)
@@ -502,7 +543,7 @@ func _physics_process(delta: float) -> void:
 
 	# 行走帧计数器
 	if is_walking_now:
-		walk_frame += is_move * (move_speed_current / 15000.0)
+		walk_frame += is_move * (move_speed_current / 13000.0)
 		walk_frame = fmod(walk_frame, 6.0)
 		if walk_frame < 0.0:
 			walk_frame += 6.0
@@ -519,6 +560,9 @@ func _physics_process(delta: float) -> void:
 
 	# 上半身优先级控制
 	if shield_raising:
+		_set_upper("上半身-抬手")
+		AnimaUpper.frame = 0
+	elif unguarded:
 		_set_upper("上半身-抬手")
 		AnimaUpper.frame = 0
 	elif attack_state != AttackState.IDLE:
@@ -587,6 +631,24 @@ func _physics_process(delta: float) -> void:
 			_set_upper("上半身-站立-空手")
 			AnimaUpper.frame = 0
 
+	# 建造动画覆盖（最高优先级）
+	if _building:
+		_build_frame += 1
+		_override_upper_anim = "上半身-单手抬手-挥舞"
+		_override_upper_frame = (_build_frame / 4) % 4
+
+	# 交互动画覆盖（一轮）
+	if _interact_frames_left > 0:
+		_interact_frames_left -= 1
+		_override_upper_anim = "上半身-单手抬手-挥舞"
+		_override_upper_frame = clampi(int((12 - _interact_frames_left) * 4.0 / 12), 0, 3)
+		if _interact_frames_left <= 0:
+			_override_upper_anim = ""
+			if _interact_check_area:
+				_interact_check_area.queue_free()
+				_interact_check_area = null
+			_interact_triggered = false
+
 	# 进食动画覆盖（走在行走/站立后面，保证优先级）
 	if _eating_active:
 		AnimaUpper.animation = _anim_overrides.get("上半身-单手抬手-挥舞", "上半身-单手抬手-挥舞")
@@ -598,7 +660,7 @@ func _physics_process(delta: float) -> void:
 		AnimaUpper.frame = _override_upper_frame
 
 	# 空闲时每帧检测攻击区域是否有敌人
-	if not _dying and not _attack_pending and not _block_attack and _stun_frames_left <= 0 and _kb_timer.time_left <= 0 and attack_state == AttackState.IDLE and attack_area.monitoring:
+	if not _dying and not _attack_pending and not _block_attack and not unguarded and _stun_frames_left <= 0 and _kb_timer.time_left <= 0 and attack_state == AttackState.IDLE and attack_area.monitoring:
 		for area in attack_area.get_overlapping_areas():
 			var c = area.get("camp")
 			if c != null and c != camp:
@@ -748,12 +810,33 @@ func _process(delta: float) -> void:
 			if is_selected:
 				active_item_held = Input.is_key_pressed(KEY_S) and attack_state == AttackState.IDLE and not _dying
 				_s_prev = active_item_held
+
 				if Input.is_key_pressed(KEY_SHIFT):
+					# Shift+F：切换自动交互（放在 return 前执行）
+					if Input.is_key_pressed(KEY_F) and not _prev_shift_f_held:
+						_auto_f = not _auto_f
+						if _auto_f:
+							_auto_f_timer = 0
+							_interact_frames_left = 12
+							var dir = 1 if camp == 0 else -1
+							_interact_check_area = Area2D.new()
+							_interact_check_area.collision_mask = 1
+							var shape = RectangleShape2D.new()
+							shape.size = Vector2(8, 16)
+							var col = CollisionShape2D.new()
+							col.shape = shape
+							_interact_check_area.add_child(col)
+							_interact_check_area.global_position = global_position + Vector2(dir * 40, 8)
+							get_parent().add_child(_interact_check_area)
+					_prev_shift_f_held = Input.is_key_pressed(KEY_F)
+
 					if Input.is_action_pressed("move_right"):
+						_auto_f = false
 						auto_move = 1
 						deselect()
 						return
 					elif Input.is_action_pressed("move_left"):
+						_auto_f = false
 						auto_move = -1
 						deselect()
 						return
@@ -765,12 +848,41 @@ func _process(delta: float) -> void:
 					is_move = 1
 			else:
 				is_move = auto_move
+
 		else:
 			is_move = auto_move * -1
 			if auto_skill and attack_state == AttackState.IDLE and not _dying:
 				active_item_held = true
 			else:
 				active_item_held = false
+
+		# 建造中强制锁定移动和技能
+		if _building:
+			is_move = 0
+			active_item_held = false
+
+		# F键交互：自动F在所有玩家角色上生效
+		if camp == 0:
+			var f_trigger = Input.is_key_pressed(KEY_F) and not _prev_f_held
+			if _auto_f:
+				if _auto_f_timer <= 0 and _interact_frames_left == 0:
+					f_trigger = true
+					_auto_f_timer = 25 + randi() % 21
+				else:
+					_auto_f_timer -= 1
+			if (is_selected or _auto_f) and f_trigger and not _dying and attack_state == AttackState.IDLE and not shield_raising and not unguarded and not _block_attack and not active_item_held:
+				_interact_frames_left = 12
+				var dir = 1 if camp == 0 else -1
+				_interact_check_area = Area2D.new()
+				_interact_check_area.collision_mask = 1
+				var shape = RectangleShape2D.new()
+				shape.size = Vector2(8, 16)
+				var col = CollisionShape2D.new()
+				col.shape = shape
+				_interact_check_area.add_child(col)
+				_interact_check_area.global_position = global_position + Vector2(dir * 40, 8)
+				get_parent().add_child(_interact_check_area)
+			_prev_f_held = Input.is_key_pressed(KEY_F)
 
 		# 靠近敌人时禁止向前移动（人控和 AI 都生效）
 		if not _nearby_enemies.is_empty():
@@ -980,7 +1092,7 @@ func _on_attack_area_area_entered(area: Area2D) -> void:
 		return
 	if _stun_frames_left > 0 or _kb_timer.time_left > 0:
 		return
-	if _block_attack:
+	if _block_attack or unguarded:
 		return
 	var target_camp = area.get("camp")
 	if target_camp != null and target_camp != camp:
@@ -1057,6 +1169,18 @@ func _set_upper_attack_frame(anim_name: String, stage_duration: float, reverse: 
 	AnimaUpper.frame = clampi((frame_count - 1 - raw) if reverse else raw, 0, frame_count - 1)
 
 
+func _finish_building():
+	_building = false
+	_building_ref = null
+	_build_frame = 0
+	_override_upper_anim = ""
+	unguarded = false
+	attack_area.monitoring = true
+	if _unguarded_flipped:
+		scale.x *= -1
+		_unguarded_flipped = false
+
+
 # ============================================================
 # _on_select_area_clicked(viewport, event, shape_idx)
 # Area2D 的鼠标点击回调。
@@ -1096,6 +1220,11 @@ func _input(event: InputEvent) -> void:
 	if event is InputEventKey and event.keycode == KEY_W and event.pressed and self == selected_node:
 		get_viewport().set_input_as_handled()
 		_select_same_template()
+	if event is InputEventKey and event.keycode == KEY_F1 and event.pressed and camp == 0 and is_selected:
+		unguarded = not unguarded
+		if not unguarded and _unguarded_flipped:
+			scale.x *= -1
+			_unguarded_flipped = false
 
 
 func _select_same_template():

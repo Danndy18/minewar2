@@ -24,6 +24,9 @@ var _base_hit_rate: float = 1.0
 var _decay_start: int = 40
 var _decay_end: int = 80
 
+# 弹射物名片：告诉目标我是弹射物
+var is_projectile: bool = true
+
 
 func setup(parent: Node, cfg: Dictionary):
 	_parent = parent
@@ -147,6 +150,15 @@ func _on_area_entered(area: Area2D) -> void:
 			_rot_speed *= -20.0
 			return
 
+		# 目标身上已扎入的箭矢≥8根则不插入（含建筑和棋子）
+		var stuck_count = 0
+		for p in get_tree().get_nodes_in_group("stuck_projectiles"):
+			if is_instance_valid(p) and p.get_parent() == area.get_parent():
+				stuck_count += 1
+		if stuck_count >= 8:
+			_die()
+			return
+
 		add_to_group("stuck_projectiles")
 		area.take_damage(_damage, _weapon_type, _counter_shield)
 		_swap_to_hit()
@@ -158,6 +170,8 @@ func _deferred_reparent(new_parent: Node):
 	reparent(new_parent)
 	z_as_relative = true
 	z_index = 0
+	collision_layer = 0
+	collision_mask = 0
 	add_to_group("stuck_projectiles")
 	var shield_idx = -1
 	for i in new_parent.get_child_count():
