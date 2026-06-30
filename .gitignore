@@ -1,3 +1,5 @@
 # Godot 4+ specific ignores
-.godot/
+.godot/**
+.import/**
+Godot Engine 4.7 documentation in English MD/
 /android/
