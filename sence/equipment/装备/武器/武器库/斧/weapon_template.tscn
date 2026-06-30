@@ -2,9 +2,9 @@
 
 [ext_resource type="Script" uid="uid://b2rnw3msqqr8c" path="res://sence/equipment/装备/武器/武器父对象/weapon_parent.gd" id="1"]
 [ext_resource type="Resource" uid="uid://dvtevf5t73pn0" path="res://sence/equipment/装备/武器/武器库/斧/atk_thrust.tres" id="2"]
-[ext_resource type="SpriteFrames" uid="uid://dawdo4jyritt3" path="res://rescourse/object/character/humanlike/equipment/weapons/axe/axe.tres" id="3"]
+[ext_resource type="SpriteFrames" uid="uid://dawdo4jyritt3" path="res://rescourse/object/humanlike/equipment/weapons/axe/axe.tres" id="3"]
 [ext_resource type="Script" uid="uid://dx3jjjat2bnub" path="res://sence/equipment/装备/武器/武器父对象/attack_method_data.gd" id="3_8o4t8"]
-[ext_resource type="SpriteFrames" uid="uid://bd4yrqp2rnsgu" path="res://rescourse/object/character/humanlike/equipment/weapons/axe/axe_outline.tres" id="4"]
+[ext_resource type="SpriteFrames" uid="uid://bd4yrqp2rnsgu" path="res://rescourse/object/humanlike/equipment/weapons/axe/axe_outline.tres" id="4"]
 
 [node name="斧" type="Area2D" unique_id=1938577164]
 script = ExtResource("1")

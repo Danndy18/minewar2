@@ -1,8 +1,8 @@
 [gd_scene format=3 uid="uid://bv4imyu468aj0"]
 
 [ext_resource type="Script" uid="uid://cyetc3fsdc5fh" path="res://sence/equipment/装备/护甲/护甲父对象/armor.gd" id="1"]
-[ext_resource type="SpriteFrames" uid="uid://byrf3tr5ui5fm" path="res://rescourse/object/character/humanlike/equipment/armor/chain/chain_boots/chain_boots.tres" id="2"]
-[ext_resource type="SpriteFrames" uid="uid://rew34mqovrqv" path="res://rescourse/object/character/humanlike/equipment/armor/chain/chain_boots/chain_boots_outline.tres" id="3"]
+[ext_resource type="SpriteFrames" uid="uid://byrf3tr5ui5fm" path="res://rescourse/object/humanlike/equipment/armor/chain/chain_boots/chain_boots.tres" id="2"]
+[ext_resource type="SpriteFrames" uid="uid://rew34mqovrqv" path="res://rescourse/object/humanlike/equipment/armor/chain/chain_boots/chain_boots_outline.tres" id="3"]
 
 [node name="链靴" type="Area2D" unique_id=2066320895]
 script = ExtResource("1")

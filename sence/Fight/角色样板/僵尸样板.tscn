@@ -1,8 +1,8 @@
 [gd_scene format=3]
 
 [ext_resource type="Script" path="res://sence/Fight/角色样板/僵尸样板.gd" id="1"]
-[ext_resource type="SpriteFrames" path="res://rescourse/object/character/humanlike/enemy_pieces/zombie/zombie.tres" id="2"]
-[ext_resource type="SpriteFrames" path="res://rescourse/object/character/humanlike/enemy_pieces/zombie/zombie_outline.tres" id="3"]
+[ext_resource type="SpriteFrames" path="res://rescourse/object/humanlike/enemy_pieces/zombie/zombie.tres" id="2"]
+[ext_resource type="SpriteFrames" path="res://rescourse/object/humanlike/enemy_pieces/zombie/zombie_outline.tres" id="3"]
 [ext_resource type="PackedScene" path="res://sence/equipment/装备/武器/武器库/僵尸之爪/weapon_template.tscn" id="4"]
 [ext_resource type="Resource" path="res://sence/equipment/ai/ai模板/ai_charge.tres" id="5"]
 

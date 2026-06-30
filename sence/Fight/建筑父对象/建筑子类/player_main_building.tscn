@@ -1,7 +1,7 @@
 [gd_scene format=3]
 
-[ext_resource type="Script" path="res://sence/Fight/建筑父对象/建筑子类/player_main_building.gd" id="1"]
-[ext_resource type="SpriteFrames" path="res://rescourse/object/character/building/玩家据点.tres" id="2"]
+[ext_resource type="Script" uid="uid://df65r3cmwxmal" path="res://sence/Fight/建筑父对象/建筑子类/player_main_building.gd" id="1"]
+[ext_resource type="SpriteFrames" uid="uid://clm5e5amfy7g7" path="res://rescourse/object/building/玩家据点.tres" id="2"]
 
 [sub_resource type="RectangleShape2D" id="1"]
 size = Vector2(18, 20)

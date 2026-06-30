@@ -1,7 +1,7 @@
 [gd_scene format=3]
 
-[ext_resource type="Script" path="res://sence/Fight/建筑父对象/建筑子类/human_dispenser.gd" id="1"]
-[ext_resource type="SpriteFrames" path="res://rescourse/object/character/building/人力发射器.tres" id="2"]
+[ext_resource type="Script" uid="uid://dmkuxq7l2cyl8" path="res://sence/Fight/建筑父对象/建筑子类/human_dispenser.gd" id="1"]
+[ext_resource type="SpriteFrames" uid="uid://bg4u65d05ntbj" path="res://rescourse/object/building/人力发射器.tres" id="2"]
 
 [sub_resource type="RectangleShape2D" id="1"]
 size = Vector2(18, 20)

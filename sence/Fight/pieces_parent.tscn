@@ -1,8 +1,8 @@
 [gd_scene format=3 uid="uid://b4isdhco6ua1"]
 
 [ext_resource type="Script" uid="uid://b3dk8vukppn48" path="res://script/pieces_parent.gd" id="1"]
-[ext_resource type="SpriteFrames" uid="uid://bep2eq2y6y3m5" path="res://rescourse/object/character/humanlike/player_pieces/def/def.tres" id="2_brhif"]
-[ext_resource type="SpriteFrames" uid="uid://dj1t6o2k7iq4x" path="res://rescourse/object/character/humanlike/player_pieces/def/def_outline.tres" id="3_kayph"]
+[ext_resource type="SpriteFrames" uid="uid://bep2eq2y6y3m5" path="res://rescourse/object/humanlike/player_pieces/def/def.tres" id="2_brhif"]
+[ext_resource type="SpriteFrames" uid="uid://dj1t6o2k7iq4x" path="res://rescourse/object/humanlike/player_pieces/def/def_outline.tres" id="3_kayph"]
 
 [sub_resource type="RectangleShape2D" id="1"]
 size = Vector2(18, 20)

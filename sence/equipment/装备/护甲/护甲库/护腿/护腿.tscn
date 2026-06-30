@@ -1,8 +1,8 @@
 [gd_scene format=3 uid="uid://cw045ay40e2jf"]
 
 [ext_resource type="Script" uid="uid://cyetc3fsdc5fh" path="res://sence/equipment/装备/护甲/护甲父对象/armor.gd" id="1"]
-[ext_resource type="SpriteFrames" uid="uid://bn2bycxtqavb5" path="res://rescourse/object/character/humanlike/equipment/armor/plate/plate_leggings/plate_leggings.tres" id="2"]
-[ext_resource type="SpriteFrames" uid="uid://bynjyqhnfyc21" path="res://rescourse/object/character/humanlike/equipment/armor/plate/plate_leggings/plate_leggings_outline.tres" id="3"]
+[ext_resource type="SpriteFrames" uid="uid://bn2bycxtqavb5" path="res://rescourse/object/humanlike/equipment/armor/plate/plate_leggings/plate_leggings.tres" id="2"]
+[ext_resource type="SpriteFrames" uid="uid://bynjyqhnfyc21" path="res://rescourse/object/humanlike/equipment/armor/plate/plate_leggings/plate_leggings_outline.tres" id="3"]
 
 [node name="护腿" type="Area2D" unique_id=1984723635]
 script = ExtResource("1")

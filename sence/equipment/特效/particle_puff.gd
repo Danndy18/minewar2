@@ -1,6 +1,6 @@
 extends AnimatedSprite2D
 
-const POOF_FRAMES = preload("res://rescourse/object/particle/poof.tres")
+const POOF_FRAMES = preload("res://rescourse/particle/poof.tres")
 
 var _drift_x: float = 0.0
 var _float_y: float = -0.25

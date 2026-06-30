@@ -20,7 +20,7 @@ func _ready() -> void:
 	size = Vector2(window_width, window_height)
 	position = Vector2(window_pos_x, window_pos_y)
 
-	var tex = load("res://rescourse/object/UI/windowsui/窗口.png")
+	var tex = load("res://rescourse/UI/windowsui/窗口.png")
 	var bg = StyleBoxTexture.new()
 	bg.texture = tex
 	bg.texture_margin_left = BORDER

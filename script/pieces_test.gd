@@ -7,8 +7,8 @@ const ZOMBIE_CLAW = preload("res://sence/equipment/装备/武器/武器库/僵�
 const PREVIEW_SCENE = preload("res://sence/Fight/展示用角色/展示用角色.tscn")
 const PiecesParent = preload("res://script/pieces_parent.gd")
 const AIContainer = preload("res://sence/equipment/ai/ai父对象/ai_container.gd")
-const ZOMBIE_FRAMES = preload("res://rescourse/object/character/humanlike/enemy_pieces/zombie/zombie.tres")
-const ZOMBIE_OUTLINE = preload("res://rescourse/object/character/humanlike/enemy_pieces/zombie/zombie_outline.tres")
+const ZOMBIE_FRAMES = preload("res://rescourse/object/humanlike/enemy_pieces/zombie/zombie.tres")
+const ZOMBIE_OUTLINE = preload("res://rescourse/object/humanlike/enemy_pieces/zombie/zombie_outline.tres")
 
 # ========== 装备数据 ==========
 const WEAPONS = {
@@ -511,9 +511,9 @@ func _on_save():
 	var next_id = 1
 	lines.append('[ext_resource type="Script" path="' + gd_dst + '" id="' + str(next_id) + '"]')
 	next_id += 1
-	lines.append('[ext_resource type="SpriteFrames" path="res://rescourse/object/character/humanlike/player_pieces/def/def.tres" id="' + str(next_id) + '"]')
+	lines.append('[ext_resource type="SpriteFrames" path="res://rescourse/object/humanlike/player_pieces/def/def.tres" id="' + str(next_id) + '"]')
 	next_id += 1
-	lines.append('[ext_resource type="SpriteFrames" path="res://rescourse/object/character/humanlike/player_pieces/def/def_outline.tres" id="' + str(next_id) + '"]')
+	lines.append('[ext_resource type="SpriteFrames" path="res://rescourse/object/humanlike/player_pieces/def/def_outline.tres" id="' + str(next_id) + '"]')
 	next_id += 1
 
 	var equip_ids: Array[int] = []
@@ -821,9 +821,11 @@ func _input(event: InputEvent) -> void:
 			_bottom_ui_layer.visible = not cl.visible
 		return
 	if event is InputEventKey and event.physical_keycode == KEY_F11 and event.pressed and not event.echo:
+		if not _test_window or not is_instance_valid(_test_window):
+			_open_test_window()
+			await get_tree().process_frame
 		if _test_window and is_instance_valid(_test_window):
-			var n = _option_items.size() + 1
-			_option_items.append("测试物品" + str(n))
+			_option_items.append("测试物品" + str(_option_items.size() + 1))
 			for c in _option_content.get_children():
 				c.queue_free()
 			var rows = _option_items.size()
@@ -990,7 +992,7 @@ func _open_test_window():
 			holder.add_child(s)
 
 	var char_bg = TextureRect.new()
-	char_bg.texture = load("res://rescourse/object/UI/windowsui/角色显示底板.png")
+	char_bg.texture = load("res://rescourse/UI/windowsui/角色显示底板.png")
 	char_bg.texture_filter = CanvasItem.TEXTURE_FILTER_NEAREST
 	char_bg.position = Vector2(1 * slot, 0)
 	holder.add_child(char_bg)
@@ -1009,7 +1011,7 @@ func _open_test_window():
 	holder.add_child(input_holder)
 
 	var input_bg = TextureRect.new()
-	input_bg.texture = load("res://rescourse/object/UI/windowsui/输入框_活跃.png")
+	input_bg.texture = load("res://rescourse/UI/windowsui/输入框_活跃.png")
 	input_bg.texture_filter = CanvasItem.TEXTURE_FILTER_NEAREST
 	input_bg.position = Vector2.ZERO
 	input_holder.add_child(input_bg)
@@ -1020,7 +1022,7 @@ func _open_test_window():
 	input_wrap.texture_filter = CanvasItem.TEXTURE_FILTER_NEAREST
 	input_holder.add_child(input_wrap)
 
-	var f = load("res://rescourse/object/UI/simsun.ttc")
+	var f = load("res://rescourse/UI/simsun.ttc")
 	var fv = FontVariation.new()
 	fv.base_font = f
 	fv.set_spacing(TextServer.SPACING_GLYPH, 1)
@@ -1050,7 +1052,7 @@ func _open_test_window():
 	input_wrap.scale = Vector2(2, 2)
 
 	# 输入框下方两个按钮，右对齐输入框
-	var btn_tex = load("res://rescourse/object/UI/windowsui/按钮.png")
+	var btn_tex = load("res://rescourse/UI/windowsui/按钮.png")
 	for i in range(2):
 		var bx = 0 if i == 0 else 100
 		var btn_bg = TextureRect.new()
@@ -1068,7 +1070,7 @@ func _open_test_window():
 
 	# 选项展示窗，放在格子下方
 	var option_bg = TextureRect.new()
-	option_bg.texture = load("res://rescourse/object/UI/windowsui/选项展示窗.png")
+	option_bg.texture = load("res://rescourse/UI/windowsui/选项展示窗.png")
 	option_bg.texture_filter = CanvasItem.TEXTURE_FILTER_NEAREST
 	option_bg.position = Vector2(0, 120)
 	holder.add_child(option_bg)
@@ -1088,8 +1090,8 @@ func _open_test_window():
 	clip.add_child(option_content)
 	_option_content = option_content
 
-	var opt_tex = load("res://rescourse/object/UI/windowsui/选项.png")
-	var icon_tex = load("res://rescourse/object/UI/windowsui/测试物品图标.png")
+	var opt_tex = load("res://rescourse/UI/windowsui/选项.png")
+	var icon_tex = load("res://rescourse/UI/windowsui/测试物品图标.png")
 
 	var build_options = func():
 		for c in option_content.get_children():
@@ -1147,14 +1149,14 @@ func _open_test_window():
 
  	# 右侧滚动条
 	var scroll_base = TextureRect.new()
-	scroll_base.texture = load("res://rescourse/object/UI/windowsui/滚动条底座.png")
+	scroll_base.texture = load("res://rescourse/UI/windowsui/滚动条底座.png")
 	scroll_base.texture_filter = CanvasItem.TEXTURE_FILTER_NEAREST
 	scroll_base.position = Vector2(316, 120)
 	holder.add_child(scroll_base)
 	_scroll_base = scroll_base
 
 	var scroll_btn = TextureRect.new()
-	scroll_btn.texture = load("res://rescourse/object/UI/windowsui/滚动条按钮.png")
+	scroll_btn.texture = load("res://rescourse/UI/windowsui/滚动条按钮.png")
 	scroll_btn.texture_filter = CanvasItem.TEXTURE_FILTER_NEAREST
 	scroll_btn.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	scroll_btn.position = Vector2(316 + 2, 120 + 2)

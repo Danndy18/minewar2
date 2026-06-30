@@ -3,8 +3,8 @@
 [ext_resource type="Script" path="res://sence/equipment/装备/武器/武器父对象/weapon_parent.gd" id="1"]
 [ext_resource type="Resource" path="res://sence/equipment/装备/武器/武器库/镐/atk_pick.tres" id="2"]
 [ext_resource type="Script" path="res://sence/equipment/装备/武器/武器父对象/attack_method_data.gd" id="3"]
-[ext_resource type="SpriteFrames" path="res://rescourse/object/character/humanlike/equipment/weapons/pickaxe/pickaxe.tres" id="4"]
-[ext_resource type="SpriteFrames" path="res://rescourse/object/character/humanlike/equipment/weapons/pickaxe/pickaxe_outline.tres" id="5"]
+[ext_resource type="SpriteFrames" path="res://rescourse/object/humanlike/equipment/weapons/pickaxe/pickaxe.tres" id="4"]
+[ext_resource type="SpriteFrames" path="res://rescourse/object/humanlike/equipment/weapons/pickaxe/pickaxe_outline.tres" id="5"]
 
 [node name="镐" type="Area2D"]
 script = ExtResource("1")

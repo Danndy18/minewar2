@@ -3,8 +3,8 @@
 [ext_resource type="Script" uid="uid://b2rnw3msqqr8c" path="res://sence/equipment/装备/武器/武器父对象/weapon_parent.gd" id="1"]
 [ext_resource type="Script" uid="uid://dx3jjjat2bnub" path="res://sence/equipment/装备/武器/武器父对象/attack_method_data.gd" id="2"]
 [ext_resource type="Resource" uid="uid://bhc3ll4ym6mcq" path="res://sence/equipment/装备/武器/武器库/弓/atk_shoot.tres" id="3"]
-[ext_resource type="SpriteFrames" uid="uid://cwqyopl7y6h7b" path="res://rescourse/object/character/humanlike/equipment/weapons/bow/bow.tres" id="4"]
-[ext_resource type="SpriteFrames" uid="uid://c42kvpkfu47fo" path="res://rescourse/object/character/humanlike/equipment/weapons/bow/bow_outline.tres" id="5"]
+[ext_resource type="SpriteFrames" uid="uid://cwqyopl7y6h7b" path="res://rescourse/object/humanlike/equipment/weapons/bow/bow.tres" id="4"]
+[ext_resource type="SpriteFrames" uid="uid://c42kvpkfu47fo" path="res://rescourse/object/humanlike/equipment/weapons/bow/bow_outline.tres" id="5"]
 
 [node name="WeaponTemplate" type="Area2D" unique_id=463310120]
 script = ExtResource("1")

@@ -1,8 +1,8 @@
 [gd_scene format=3]
 
 [ext_resource type="Script" path="res://sence/equipment/装备/主动道具/主动装备库/方块/dispenser_template.gd" id="1"]
-[ext_resource type="SpriteFrames" path="res://rescourse/object/character/humanlike/equipment/block/dispenser/dispenser.tres" id="2"]
-[ext_resource type="SpriteFrames" path="res://rescourse/object/character/humanlike/equipment/block/dispenser/dispenser_outline.tres" id="3"]
+[ext_resource type="SpriteFrames" path="res://rescourse/object/humanlike/equipment/block/dispenser/dispenser.tres" id="2"]
+[ext_resource type="SpriteFrames" path="res://rescourse/object/humanlike/equipment/block/dispenser/dispenser_outline.tres" id="3"]
 
 [node name="DispenserTemplate" type="Area2D"]
 script = ExtResource("1")

@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://bqbga7e5yxmvk"]
 
 [ext_resource type="Script" uid="uid://dbqpwngs2hy35" path="res://sence/Fight/展示用角色/展示用角色.gd" id="1"]
-[ext_resource type="SpriteFrames" uid="uid://bep2eq2y6y3m5" path="res://rescourse/object/character/humanlike/player_pieces/def/def.tres" id="2"]
+[ext_resource type="SpriteFrames" uid="uid://bep2eq2y6y3m5" path="res://rescourse/object/humanlike/player_pieces/def/def.tres" id="2"]
 
 [node name="展示用角色" type="Node2D" unique_id=392768651]
 script = ExtResource("1")

@@ -1,8 +1,8 @@
 [gd_scene format=3 uid="uid://cuva22yjd7k41"]
 
-[ext_resource type="Script" uid="uid://cx6cg1jdy5qtt" path="res://sence/equipment/装备/护甲/护甲库/板靴/板靴.gd" id="1"]
-[ext_resource type="SpriteFrames" uid="uid://clu8l1owvjh72" path="res://rescourse/object/character/humanlike/equipment/armor/plate/plate_boots/plate_boots.tres" id="2"]
-[ext_resource type="SpriteFrames" uid="uid://b0nrfkoefv38m" path="res://rescourse/object/character/humanlike/equipment/armor/plate/plate_boots/plate_boots_outline.tres" id="3"]
+[ext_resource type="Script" uid="uid://bemo5rwtxm0yc" path="res://sence/equipment/装备/护甲/护甲库/板靴/板靴.gd" id="1"]
+[ext_resource type="SpriteFrames" path="res://rescourse/object/humanlike/equipment/armor/plate/plate_boots/plate_boots_outline.tres" id="2"]
+[ext_resource type="SpriteFrames" path="res://rescourse/object/humanlike/equipment/armor/plate/plate_boots/plate_boots_outline.tres" id="3"]
 
 [node name="板靴" type="Area2D" unique_id=484285348]
 script = ExtResource("1")

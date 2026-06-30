@@ -9,7 +9,7 @@ func setup(template: Dictionary) -> void:
 
 	var upper = $Upper as AnimatedSprite2D
 	var lower = $Lower as AnimatedSprite2D
-	var def = preload("res://rescourse/object/character/humanlike/player_pieces/def/def.tres")
+	var def = preload("res://rescourse/object/humanlike/player_pieces/def/def.tres")
 
 	upper.sprite_frames = def
 	upper.texture_filter = TEXTURE_FILTER_NEAREST
@@ -98,7 +98,7 @@ func setup(template: Dictionary) -> void:
 		equip.queue_free()
 
 	# 身体描边
-	var def_outline = preload("res://rescourse/object/character/humanlike/player_pieces/def/def_outline.tres")
+	var def_outline = preload("res://rescourse/object/humanlike/player_pieces/def/def_outline.tres")
 	_make_outline(upper, def_outline)
 	_make_outline(lower, def_outline)
 

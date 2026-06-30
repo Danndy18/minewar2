@@ -1,6 +1,6 @@
 extends Area2D
 
-const ARROW_IN = preload("res://rescourse/object/character/humanlike/equipment/weapons/bow/arrow_in.png")
+const ARROW_IN = preload("res://rescourse/object/humanlike/equipment/weapons/bow/arrow_in.png")
 
 var _parent = null
 var _damage: int = 0

@@ -16,7 +16,7 @@ func _init() -> void:
 	size = Vector2(SLOT_SIZE, SLOT_SIZE)
 
 	_bg = TextureRect.new()
-	_bg.texture = load("res://rescourse/object/UI/windowsui/物品槽位.png")
+	_bg.texture = load("res://rescourse/UI/windowsui/物品槽位.png")
 	_bg.texture_filter = CanvasItem.TEXTURE_FILTER_NEAREST
 	_bg.stretch_mode = TextureRect.STRETCH_KEEP
 	add_child(_bg)
